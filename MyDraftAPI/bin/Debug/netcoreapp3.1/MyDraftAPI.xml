@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyDraftAPI</name>
+    </assembly>
+    <members>
+        <member name="M:MyDraftAPI.Controllers.NewsController.GetApiNews">
+            <summary>
+            Get list of News (Items for News List).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyDraftAPI.Controllers.NewsController.GetNewsByPlayerID(System.Int32)">
+            <summary>
+            Get News for Player.
+            </summary>
+            <param name="playerId"> The id of the Player </param>
+            <returns></returns>
+        </member>
+        <member name="M:MyDraftAPI.Controllers.NewsController.GetNewsByNFLTeamID(System.Int32)">
+            <summary>
+            Get News for NFL Team.
+            </summary>
+            <param name="teamId"> The id of the NFL Team. </param>
+            <returns></returns>
+        </member>
+        <member name="M:MyDraftAPI.Controllers.PlayersController.GetApiPlayers">
+            <summary>
+            Get list of Players to Draft (Items for Player List).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MyDraftAPI.Controllers.PlayersController.GetApiPlayerByID(System.Int32)">
+            <summary>
+            Get individual Player.
+            </summary>
+            <param name="playerID"> The id of the Player </param>
+            <returns></returns>
+        </member>
+        <member name="M:MyDraftAPI.Controllers.PlayersController.GetApiPlayerDepthChart(System.String,System.String)">
+            <summary>
+            Returns Players depth chart position.
+            </summary>
+            <param name="position"></param>
+            <param name="teamAbbr"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
