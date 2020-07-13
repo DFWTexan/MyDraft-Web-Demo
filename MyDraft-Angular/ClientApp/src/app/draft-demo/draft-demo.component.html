@@ -1,0 +1,54 @@
+<div class="row p-5">
+  <!-- COL-1: SECTION Player Information -->
+  <div class="col rounded">
+    <div class="row">
+      <app-league></app-league>
+    </div>
+  </div>
+  <!-- COL-2: SECTION Player Information -->
+  <div class="col">
+    <!-- Player Search -->
+    <div class="row">
+      <div class="col-xs-12 w-100">
+        <app-player-search></app-player-search>
+      </div>
+    </div>
+    <!-- Draft Info. -->
+    <div class="row w-100" style="text-align: center; background: white">
+      <div class="col text-muted" style="background: white">
+        On The Clock:&nbsp;<label>{{ onTheClockFanTeam }}</label>&nbsp;| Rnd {{ draftRound }} | Pick {{ draftPick }}
+      </div>
+    </div>
+    <!-- Player Filter -->
+    <div class="row">
+      <div class="col p-1 rounded" style="background: gray; display: flex; justify-content: center">
+        <app-player-filter></app-player-filter>
+      </div>
+    </div>
+    <!-- Player List -->
+    <div class="row rounded" style="background: gainsboro">
+      <div class="col">
+        <app-player-list></app-player-list>
+      </div>
+    </div>
+  </div>
+  <!-- COL-3: SECTION Fantasy Team & Player Detail-->
+  <div class="col">
+    <!-- Fantasy Team Info -->
+    <div class="row">
+      <div class="col w-100 rounded">
+        <app-fanteam-info></app-fanteam-info>
+      </div>
+    </div>
+    <!-- Player Detail -->
+    <div class="row">
+      <div class="col w-100 h-100" style="min-height: 450px; max-height: 500px">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <!-- COL-4: SECTION NFL Team Info -->
+  <div class="col w-100">
+    <app-nfl-info></app-nfl-info>
+  </div>
+</div>

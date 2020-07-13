@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <!-- POINTS -->
+    <div class="col w-100" style="display: flex; justify-content: center">
+      <select class="form-control flex-sm-fill" (change)="changeValue($event)" style="min-width: 90px">
+        <option *ngFor="let value of playerValues">{{value}}</option>
+      </select>
+      &nbsp;
+      <select class="form-control" (change)="changePos($event)" style="min-width: 105px">
+        <option *ngFor="let itm of Positions">{{itm}}</option>
+      </select>
+      &nbsp;
+      <select class="form-control" (change)="changeOption($event)" style="min-width: 115px">
+        <option *ngFor="let option of options">{{option}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+

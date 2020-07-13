@@ -1,0 +1,8 @@
+<p *ngIf="!playerNews"><em>Loading Player News...</em></p>
+<div class="row">
+  <div class="col" style="max-height: 200px; overflow: auto">
+    <app-player-news-item *ngFor="let newsItem of playerNews"
+                   [playerNews]="newsItem">
+    </app-player-news-item>
+  </div>
+</div>

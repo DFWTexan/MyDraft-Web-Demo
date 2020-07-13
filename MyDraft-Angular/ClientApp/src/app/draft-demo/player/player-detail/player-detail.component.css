@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  background: black;
+  border-radius: 5px;
+  border: inset 2px gainsboro;
+}
+
+/* not active */
+.nav-pills .nav-link:not(.active) {
+  background-color: #fff;
+  color: gray;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 10px;
+  margin: 1px;
+}
+
+/* active*/
+.nav-pills .nav-link {
+  background-color: black;
+  color: white;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 10px;
+  margin: 1px;
+}

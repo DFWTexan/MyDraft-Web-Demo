@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <form [formGroup]="miscForm">
+        <div class="row">
+          <div class="col">
+            <h3>Standard</h3>
+            <div class="form-group row">
+              <label for="kickoffReturnTD" class="col-sm-9 col-form-label">Kickoff Return TD</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="kickoffReturnTD"
+                       formControlName="kickoffReturnTD"
+                       class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="puntReturnTD" class="col-sm-9 col-form-label">Punt Return TD</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="puntReturnTD"
+                       formControlName="puntReturnTD"
+                       class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="kickReturnYardsPerPoint" class="col-sm-9 col-form-label">Kickoff Return Yards per Point</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="kickReturnYardsPerPoint"
+                       formControlName="kickReturnYardsPerPoint"
+                       class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="puntReturnYardsPerPoint" class="col-sm-9 col-form-label">Punt Return yards per Point</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="puntReturnYardsPerPoint"
+                       formControlName="puntReturnYardsPerPoint"
+                       class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

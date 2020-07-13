@@ -1,0 +1,81 @@
+<div class="container rounded h-100" style="border: solid 1px white; min-height: 420px; max-height: 420px">
+  <div class="row">
+    <div class="col p-1">
+      <table style="width: 100%">
+        <tr>
+          <td rowspan="3" style="min-width: 55px; max-width: 55px">
+            <div class="w-100">
+              <img [src]="'http://static.fantasydata.com/headshots/nfl/low-res/' + idx + '.png'"
+                   class="img-responsive"
+                   style="max-height: 150px;">
+            </div>
+            
+          </td>
+          <td colspan="8" style="color: white; font-weight: 500; text-align: center">
+            XXXXXXXXXXX
+          </td>
+        </tr>
+        <tr>
+          <td colspan="6" style="color: white; text-align: left">
+            {{player?.firstName}} {{ player?.lastName }}
+          </td>
+          <td style="color:white">
+            {{ player?.position }}
+          </td>
+          <td style="color: white; text-align: right">
+            {{ player?.teamAbbr }} | Bye: #
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" style="color: grey; font-size: x-small">
+            Status: <label style="color: white">N/A</label>
+          </td>
+          <td>&nbsp;</td>
+          <td colspan="4" style="color: grey; font-size: x-small; text-align: right">
+            Age: <label style="color: white">{{ player?.age }}</label>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="6" style="color: grey; font-size: x-small">
+            Colllege: <label style="color: white">{{ player?.college }}</label>
+          </td>
+          <td style="color: grey; font-size: x-small">
+            Height: <label style="color: white">{{ player?.height }}</label>
+          </td>
+          <td colspan="2" style="color: grey; font-size: x-small; text-align: right">
+            Weight: <label style="color: white">{{ player?.weight }}</label>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col w-100 p-2 text-sm-center rounded">
+      <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+          <a class="flex-sm-fill text-sm-center nav-link active" style="cursor: pointer;" [ngClass]="{ 'active':displayView ==='NEWS'}" (click)="onDisplaySelect('NEWS')">News</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer" [ngClass]="{ 'active':displayView ==='DEPTHCHART'}" (click)="onDisplaySelect('DEPTHCHART')">Depth Chart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer" [ngClass]="{ 'active':displayView ==='STATSPROJECTION'}" (click)="onDisplaySelect('STATSPROJECTION')">Stast/Projection</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col" style="min-height: 195px; max-height: 197px">
+      <app-player-news-list *ngIf="displayView === 'NEWS'"></app-player-news-list>
+      <app-player-depth-list *ngIf="displayView === 'DEPTHCHART'"></app-player-depth-list>
+      <app-player-stat-list *ngIf="displayView === 'STATSPROJECTION'"></app-player-stat-list>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-sm-center p-1">
+      <button type="button" class="btn btn-primary" style="border: solid 1px gainsboro">Draft Player</button>
+    </div>
+  </div>
+</div>
+
+

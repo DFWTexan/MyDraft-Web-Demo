@@ -1,0 +1,9 @@
+<p *ngIf="!news"><em>Loading News...</em></p>
+<div class="row">
+  <div class="col-lg-12  rounded border-bottom" style="max-height: 820px; overflow: auto;  border: solid 1px lightgray">
+    <app-news-item *ngFor="let newsItem of news"
+      [news]="newsItem"
+      [index]="newsItem.playerId">
+    </app-news-item>
+  </div>
+</div>

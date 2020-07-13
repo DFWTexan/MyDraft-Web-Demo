@@ -1,0 +1,108 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <form [formGroup]="rushingForm">
+        <div class="row">
+          <div class="col">
+            <h3>Standard</h3>
+            <div class="form-group row">
+              <label for="rushYards" class="col-sm-9 col-form-label">Rushing Yards per Point</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="rushYards"
+                       formControlName="rushYards"
+                       class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="rushTD" class="col-sm-9 col-form-label">TD Rush</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="rushTD"
+                       formControlName="rushTD"
+                       class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="rush2PtConversion" class="col-sm-9 col-form-label">2pt Conversion</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="rush2PtConversion"
+                       formControlName="rush2PtConversion"
+                       class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="rushAttemptsPerPoint" class="col-sm-9 col-form-label">Rushing Attempts per Point</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="rushAttemptsPerPoint"
+                       formControlName="rushAttemptsPerPoint"
+                       class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="rushFumblesLost" class="col-sm-9 col-form-label">Rushing Fumbles Lost</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="rushFumblesLost"
+                       formControlName="rushFumblesLost"
+                       class="form-control">
+              </div>
+            </div>
+            
+            <h3>Bonus</h3>
+            <div class="form-group row">
+              <label for="bonus40YardRushTD" class="col-sm-9 col-form-label">40+ yard TD Rush bonus</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="bonus40YardRushTD"
+                       formControlName="bonus40YardRushTD"
+                       class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="bonus50YardRushTD" class="col-sm-9 col-form-label">50+ yard Rush bonus</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="bonus50YardRushTD"
+                       formControlName="bonus50YardRushTD"
+                       class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="bonus100Rushing" class="col-sm-9 col-form-label">100+ yard Rushing game</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="bonus100Rushing"
+                       formControlName="bonus100Rushing"
+                       class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="bonus200Rushing" class="col-sm-9 col-form-label">200+ yard Rushing game</label>
+              <div class="col-sm-3">
+                <input style="min-width: 50px"
+                       type="number"
+                       id="bonus200Rushing"
+                       formControlName="bonus200Rushing"
+                       class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+

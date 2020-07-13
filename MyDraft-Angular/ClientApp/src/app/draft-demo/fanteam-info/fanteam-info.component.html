@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row text-sm-center">
+    <div class="col">
+      <h4>Draft Information</h4>
+    </div>
+  </div>
+  <!-- nav-pills: Selection & Fantasy Teams -->
+  <div class="row">
+    <div class="col p-1" style="">
+      <ul class="nav nav-pills w-100">
+        <li class="nav-item w-50">
+          <a class="nav-link flex-sm-fill text-sm-center" style="cursor: pointer;" [ngClass]="{ 'active':displayView ==='DraftSelections'}" (click)="onDisplaySelect('DraftSelections')">Selections</a>
+        </li>
+        <li class="nav-item w-50">
+          <a class="nav-link flex-sm-fill text-sm-center" style="cursor: pointer;" [ngClass]="{ 'active':displayView ==='FantasyTeams'}" (click)="onDisplaySelect('FantasyTeams')">Fantasy Team</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- nav-pill DISPLAY Content -->
+  <div class="row" style="background: white; border: solid 1px lightgray">
+    <div class="col w-100 rounded p-1" style="min-height: 395px; max-height: 395px">
+      <app-draft-selections *ngIf="displayView === 'DraftSelections'"></app-draft-selections>
+      <app-fan-teams *ngIf="displayView === 'FantasyTeams'"></app-fan-teams>
+      <app-rosters *ngIf="displayView === 'Rosters'"></app-rosters>
+      <app-ranking *ngIf="displayView === 'TeamRanking'"></app-ranking>
+    </div>
+  </div>
+  <!-- nav-pills: Rosters & Ranking -->
+  <div class="row">
+    <div class="col w-100 p-1">
+      <ul class="nav nav-pills w-100">
+        <li class="nav-item w-50">
+          <a class="nav-link flex-sm-fill text-sm-center" style="cursor: pointer;" [ngClass]="{ 'active':displayView ==='Rosters'}" (click)="onDisplaySelect('Rosters')">Rosters</a>
+        </li>
+        <li class="nav-item w-50">
+          <a class="nav-link flex-sm-fill text-sm-center" style="cursor: pointer;" [ngClass]="{ 'active':displayView ==='TeamRanking'}" (click)="onDisplaySelect('TeamRanking')">Ranking</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,9 @@
+<p *ngIf="!players"><em>Loading Players...</em></p>
+<div class="row">
+  <div class="col-lg-12 rounded border-bottom" style="max-height: 820px; overflow: auto;  border: solid 1px lightgray">
+    <app-player-item *ngFor="let playerItem of players"
+      [player]="playerItem"
+      [index]="playerItem.playerId">
+    </app-player-item>
+  </div>
+</div>

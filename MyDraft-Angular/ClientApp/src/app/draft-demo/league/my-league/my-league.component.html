@@ -1,0 +1,86 @@
+<div class="container p-5">
+  <div class="row">
+    <div class="col-xs-12">
+      <form [formGroup]="leagueForm" (ngSubmit)="onSubmit()">
+        <!--<div class="row" style="display: flex; justify-content: center; vertical-align:text-top">
+          <div class="col-xs-12 w-100" >
+            <button type="submit"
+                    class="btn btn-outline-success btn-lg"
+                    [disabled]="!leagueForm.valid">
+              Save
+            </button>&nbsp;
+            <button type="button" class="btn btn-outline-danger btn-lg" (click)="onCancel()">Cancel</button>
+          </div>
+        </div>-->
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label for="leagueName">Name</label>
+              <input type="text"
+                     id="leagueName"
+                     formControlName="leagueName"
+                     class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label for="numTeams">Number of Teams</label>
+              <select formControlName="numTeams"
+                      class="form-control"
+                      (change)="changeNumTeams($event)">
+                <option *ngFor="let num of numTeamValues" [selected]="num === selectednumTeams">{{num}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label for="numRounds">Number of Rounds</label>
+              <select formControlName="numRounds"
+                      class="form-control"
+                      (change)="changeNumRounds($event)">
+                <option *ngFor="let num of numRoundValues" [selected]="num === selectedNumRounds">{{num}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label for="draftOrder">Draft Type</label>
+              <select formControlName="draftType"
+                      class="form-control"
+                      (change)="changeDraftType($event)">
+                <option *ngFor="let type of draftTypeValues" [selected]="type === selectedDraftType">{{type}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label for="numTeams">Draft Order</label>
+            <div class="col-xs-12">
+              <select formControlName="draftOrder"
+                      class="form-control"
+                      (change)="changeDraftOrder($event)">
+                <option *ngFor="let order of draftOrderValues | keyvalue" [value]="order.key" [selected]="order.key === selectedDraftOrder">{{order.value}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+</form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Other Leagues</h2>
+      <hr />
+      <app-league-list></app-league-list>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row text-sm-center" style="background: white">
+    <div class="col">
+      <h4>News & Team Information</h4>
+    </div>
+  </div>
+  <!-- nav-pills -->
+  <div class="row">
+    <div class="col w-100 p-1">
+      <ul class="nav nav-pills w-100">
+        <li class="nav-item w-50">
+          <a class="flex-sm-fill text-sm-center nav-link active" style="cursor: pointer;" [ngClass]="{ 'active':displayView ==='News'}" (click)="onDisplaySelect('News')">News</a>
+        </li>
+        <li class="nav-item w-50">
+          <a class="nav-link" style="cursor: pointer;" [ngClass]="{ 'active':displayView ==='TeamInfo'}" (click)="onDisplaySelect('TeamInfo')">Team Info.</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- NFL Team selection  -->
+  <div class="row">
+    <div class="col w-100 p-1 rounded" style="background: gray; display: flex; justify-content: center">
+      <select class="form-control" (change)="changeTeam($event)" style="max-width: 150px">
+        <option *ngFor="let team of teamValues | keyvalue" [value]="team.key" [selected]="team.key === selectedTeam">{{team.value}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col w-100" style="background: Gainsboro">
+      <app-news-list *ngIf="displayView === 'News'"></app-news-list>
+      <app-team-roster *ngIf="displayView === 'TeamInfo'"></app-team-roster>
+    </div>
+  </div>
+</div>
+
+

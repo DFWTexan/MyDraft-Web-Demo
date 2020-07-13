@@ -1,0 +1,25 @@
+<a class="list-group-item clearfix">
+  <div class="d-inline-block">
+    {{ roster?.position }}
+    <table>
+      <tr>
+        <th scope="col" style="text-align: center">Starter</th>
+        <th scope="col" style="text-align: center">Min</th>
+        <th scope="col" style="text-align: center">Max</th>
+      </tr>
+      <tr>
+        <td>
+          <input type="number" class="form-control" [value]="roster?.starters" (change)="posNumChange(roster.position,'Starter', $event)" style="width: 50px">
+        </td>
+        <td>
+          <input type="number" class="form-control" [value]="roster?.min" (change)="posNumChange(roster.position,'Min', $event)" style="width: 50px">
+        </td>
+        <td>
+          <input type="number" class="form-control" [value]="roster?.max" (change)="posNumChange(roster.position,'Max', $event)" style="width: 50px">
+        </td>
+      </tr>
+    </table>
+
+
+  </div>
+</a>

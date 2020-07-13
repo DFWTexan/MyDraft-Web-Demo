@@ -1,0 +1,29 @@
+<div class="row p-1 rounded">
+  <div class="col-lg-12" style="max-height: 225px; overflow: auto">
+    <h3>Standard</h3>
+    <app-roster-item *ngFor="let standardItem of rostersStandard"
+                     [roster]="standardItem"
+                     [index]="standardItem.id">
+    </app-roster-item>
+  </div>
+</div>
+<hr />
+<div class="row p-1">
+  <div class="col-lg-12" style="max-height: 225px; overflow: auto">
+    <h3>Flex</h3>
+    <app-roster-item *ngFor="let flexItem of rostersFlex"
+                     [roster]="flexItem"
+                     [index]="flexItem.id">
+    </app-roster-item>
+  </div>
+</div>
+<hr />
+<div class="row p-1">
+  <div class="col-lg-12" style="max-height: 225px; overflow: auto">
+    <h3>IDP</h3>
+    <app-roster-item *ngFor="let idpItem of rostersIDP"
+                     [roster]="idpItem"
+                     [index]="idpItem.id">
+    </app-roster-item>
+  </div>
+</div>

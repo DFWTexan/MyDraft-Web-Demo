@@ -1,0 +1,47 @@
+<div class="container p-3">
+  <div class="row w-100">
+    <div class="col w-100" style="background: white; width: 100%">
+      <div class="row w-100">
+        <!--<div class="col w-25" style="padding: 10px">
+          <button class="btn btn-success btn-sm" (click)="onNewRecipe()">Create Draft</button>
+        </div>-->
+        <br />
+        
+          <div class="col w-75" style="background: white">
+            <h4>{{activeLeague.name}}</h4>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  <!-- nav-pills -->
+  <div class="row p-2" style="border-radius: 10px" >
+    <div class="col w-100 p-2 text-sm-center" style="background-color: aliceblue">
+      <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+          <a class="flex-sm-fill text-sm-center nav-link active" style="cursor: pointer;" [ngClass]="{ 'active':displayView ==='LEAGUE'}" (click)="onDisplaySelect('LEAGUE')">League</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer" [ngClass]="{ 'active':displayView ==='ROSTER'}" (click)="onDisplaySelect('ROSTER')">Roster</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer" [ngClass]="{ 'active':displayView ==='EDIT'}" (click)="onDisplaySelect('EDIT')">Scoring</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="cursor: pointer" [ngClass]="{ 'active':displayView ==='TEAMS'}" (click)="onDisplaySelect('TEAMS')">Teams</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- League Information -->
+  <div class="row rounded" style="background-color: aliceblue; border: solid 1px gainsboro">
+    <div class="col w-100 p-3 rounded" style="width: 100%; min-height: 825px; max-height: 800px">
+      <app-my-league *ngIf="displayView === 'LEAGUE'"></app-my-league>
+      <!--<router-outlet name="myLeague" *ngIf="displayView === 'League'"></router-outlet>-->
+      <app-roster-list *ngIf="displayView === 'ROSTER'"></app-roster-list>
+      <app-league-edit *ngIf="displayView === 'EDIT'"></app-league-edit>
+      <app-teams-edit *ngIf="displayView === 'TEAMS'"></app-teams-edit>
+    </div>
+  </div>
+ </div>

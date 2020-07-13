@@ -1,0 +1,24 @@
+.border {
+  border: 1px solid red
+}
+/* not active */
+.nav-pills .nav-link:not(.active) {
+  background-color: aliceblue;
+  color: gray;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  border: solid 1px whitesmoke;
+  margin: 5px;
+}
+
+/* active*/
+.nav-pills .nav-link {
+  background-color: black;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+  border: solid 2px gainsboro;
+  margin: 5px;
+}

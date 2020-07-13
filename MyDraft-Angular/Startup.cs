@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace MyDraft_Angular
 {
@@ -22,6 +23,21 @@ namespace MyDraft_Angular
         {
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
+
+            //services.AddHttpClient();
+            services.AddHttpClient("myDraftData", c =>
+            {
+                //c.BaseAddress = new Uri("https://num5api.azurewebsites.net");
+                c.BaseAddress = new Uri("https://localhost:44306");
+                // Github API versioning
+                c.DefaultRequestHeaders.Add("Accept", "application/json; charset=utf-8");
+                c.DefaultRequestHeaders.Add("Accept", "*/*");
+                // Github requires a user-agent
+                //c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
+            });
+
+            // Enable CORS
+            services.AddCors();
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
@@ -49,6 +65,7 @@ namespace MyDraft_Angular
                 app.UseSpaStaticFiles();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
