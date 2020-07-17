@@ -19,21 +19,19 @@ export class PlayerListComponent implements OnInit, OnDestroy {
               private dataStorageService: DataStorageService) { }
     
   ngOnInit() {
-    this.dataStorageService.fetchPlayers();
-
-    this.subscription = this.playerService.playersFetched$
-      .subscribe(
-       data => {
-          this.players = data;
-          alert('EMFTest...');
-          //this.playerService.setPlayers(data);
-        });
-    
+    //this.subscription = this.playerService.playersFetched$
+    //  .subscribe(
+    //   data => {
+    //      this.players = data;
+    //      alert('EMFTest...');
+    //      //this.playerService.setPlayers(data);
+    //    });
+    this.getPlayers();
   }
 
   getPlayers(): void {
-    //this.subscription = this.playerService.getPlayers()
-    //  .subscribe(players => this.players = players);
+    this.subscription = this.playerService.getPlayers()
+      .subscribe(players => this.players = players);
   }
 
   ngOnDestroy(): void {

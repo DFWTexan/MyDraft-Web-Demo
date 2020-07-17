@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bsMPAVQfPHr8a89CuPX8ZytOjJA3ORP9Et2WtLdrqyoA/mg03UfgTAHdoyyAXEoiM/laDzFELWlOA0bnzgWSaw==",
+  "dgSpecHash": "lc3Xk2D91VetZQ7yE8XFWNcph0rzyZEHyU9/mTCu13zcx/MXgHs8pJzMw6AvFRSD7rTtjfuK3HBoizUHd18b9g==",
   "success": true,
   "projectFilePath": "C:\\Users\\erish\\DFWTexan\\Development\\MyDraft-Web-Demo\\MyDraftAPI\\MyDraftAPI.csproj",
   "expectedPackageFiles": [
@@ -114,8 +114,7 @@
     "C:\\Users\\erish\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\erish\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\erish\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\erish\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

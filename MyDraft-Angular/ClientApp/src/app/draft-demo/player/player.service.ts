@@ -18,8 +18,8 @@ export class PlayerService {
   playerObjRoute$ = this.routedPlayer.asObservable();
   private player: Player;
   private baseURL: string = '';
-  //private playerUrl = this.baseURL + 'api/MyDraftData';
-  //private playerDepthChartUrl = this.baseURL + 'api/MyDraftData/GetPlayerDepthChart/';
+  private playerUrl = this.baseURL + 'api/MyDraftData';
+  private playerDepthChartUrl = this.baseURL + 'api/MyDraftData/GetPlayerDepthChart/';
   private playerSearchURL = this.baseURL + 'api/MyDraftData/SearchPlayers';
 
   private players: PlayerItem[];
@@ -47,37 +47,37 @@ export class PlayerService {
     this.routedPlayer.next(this.player);
   }
 
-  //getPlayers(){
+  getPlayers(){
+    return this.http.get<IPlayerItem[]>(this.playerUrl)
+      .pipe(
+        tap(_ => this.log('fetched players')),
+        catchError(this.handleError<IPlayerItem[]>('getPlayers', []))
+      );
+    //return this.players.slice();
+  }
+  //getPlayers(): Observable<any> {
   //  //return this.http.get<IPlayerItem[]>(this.playerUrl)
   //  //  .pipe(
   //  //    tap(_ => this.log('fetched players')),
   //  //    catchError(this.handleError<IPlayerItem[]>('getPlayers', []))
   //  //  );
-  //  return this.players.slice();
+  //  return this.fetchedPlayers.asObservable();
   //}
-  getPlayers(): Observable<any> {
-    //return this.http.get<IPlayerItem[]>(this.playerUrl)
-    //  .pipe(
-    //    tap(_ => this.log('fetched players')),
-    //    catchError(this.handleError<IPlayerItem[]>('getPlayers', []))
-    //  );
-    return this.fetchedPlayers.asObservable();
-  }
 
   getPlayerByID(id: number) {
-    //return this.http.get<IPlayer>(this.playerUrl + '/' + id)
-    //  .pipe(
-    //    tap(_ => this.log('fetched player with ID')),
-    //    catchError(this.handleError<IPlayer>('getPlayerByID'))
-    //  );
+    return this.http.get<IPlayer>(this.playerUrl + '/' + id)
+      .pipe(
+        tap(_ => this.log('fetched player with ID')),
+        catchError(this.handleError<IPlayer>('getPlayerByID'))
+      );
   }
 
   getPlayerDepthChart() {
-    //return this.http.get<IPlayerDepthChartItem[]>(this.playerDepthChartUrl + this.player.position +'/'+ this.player.teamAbbr)
-    //  .pipe(
-    //    tap(_ => this.log('fetched player depthchart')),
-    //    catchError(this.handleError<IPlayerDepthChartItem[]>('getPlayerDepthChart', []))
-    //  );
+    return this.http.get<IPlayerDepthChartItem[]>(this.playerDepthChartUrl + this.player.position +'/'+ this.player.teamAbbr)
+      .pipe(
+        tap(_ => this.log('fetched player depthchart')),
+        catchError(this.handleError<IPlayerDepthChartItem[]>('getPlayerDepthChart', []))
+      );
   }
 
   /* GET heroes whose name contains search term */
