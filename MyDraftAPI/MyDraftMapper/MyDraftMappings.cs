@@ -15,10 +15,14 @@ namespace MyDraftAPI.MyDraftMapper
     {
         public MyDraftMappings()
         {
+            // Player
             CreateMap<GetPlayerItem, ApiPlayerItemDTO>().ReverseMap();
             CreateMap<GetPlayerItem, ApiPlayerDetailDTO>().ReverseMap();
             CreateMap<GetPlayerDepthChartItem, ApiPlayerDepthChartItemDTO>().ReverseMap();
+            // News
             CreateMap<GetNewsItem, ApiNewsItemDTO>().ReverseMap();
+            // League
+            CreateMap<UserLeague, ApiUserLeaguesDTO>().ReverseMap();
         }
     }
 }

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using MyDraftAPI.Models;
-using Microsoft.Extensions.Configuration;
 
 namespace MyDraftAPI.Data
 {
@@ -12,7 +11,8 @@ namespace MyDraftAPI.Data
         {
         }
 
-        public Num5dataContext(DbContextOptions<Num5dataContext> options) : base(options)
+        public Num5dataContext(DbContextOptions<Num5dataContext> options)
+            : base(options)
         {
         }
 
@@ -30,6 +30,8 @@ namespace MyDraftAPI.Data
         public virtual DbSet<AppDbPprojectionsWeekly> AppDbPprojectionsWeekly { get; set; }
         public virtual DbSet<AppDbProjectionsSeason> AppDbProjectionsSeason { get; set; }
         public virtual DbSet<AppDbSchedule> AppDbSchedule { get; set; }
+        public virtual DbSet<Players> Players { get; set; }
+        public virtual DbSet<Points> Points { get; set; }
         public virtual DbSet<SptTblPlayers> SptTblPlayers { get; set; }
         public virtual DbSet<SptTblProjectionsWeeklyMaster> SptTblProjectionsWeeklyMaster { get; set; }
         public virtual DbSet<SptTblStatMap> SptTblStatMap { get; set; }
@@ -45,12 +47,17 @@ namespace MyDraftAPI.Data
         public virtual DbSet<StageProjectionsWeeklyMaster> StageProjectionsWeeklyMaster { get; set; }
         public virtual DbSet<StageSchedule> StageSchedule { get; set; }
         public virtual DbSet<StageTeam> StageTeam { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserDraftSelections> UserDraftSelections { get; set; }
+        public virtual DbSet<UserLeague> UserLeague { get; set; }
+        public virtual DbSet<UserLeagueTeams> UserLeagueTeams { get; set; }
+
         // Custom Stored Procedure Entities
         public virtual DbSet<GetPlayerItem> GetPlayerItem { get; set; }
         public virtual DbSet<GetNewsItem> GetNewsItem { get; set; }
         public virtual DbSet<GetPlayerDepthChartItem> GetPlayerDepthChartItem { get; set; }
-
-
+        //-----------------------------------------------------------------------------//
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ApiAav>(entity =>
@@ -126,7 +133,9 @@ namespace MyDraftAPI.Data
 
                 entity.Property(e => e.College).IsUnicode(false);
 
-                //entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Experience).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.FirstName).IsUnicode(false);
 
@@ -136,7 +145,7 @@ namespace MyDraftAPI.Data
 
                 entity.Property(e => e.Position).IsUnicode(false);
 
-                //entity.Property(e => e.PositionCategory).IsUnicode(false);
+                entity.Property(e => e.PositionCategory).IsUnicode(false);
 
                 entity.Property(e => e.Status).IsUnicode(false);
 
@@ -202,6 +211,16 @@ namespace MyDraftAPI.Data
                 entity.Property(e => e.AwayTeam).IsUnicode(false);
 
                 entity.Property(e => e.HomeTeam).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Players>(entity =>
+            {
+                entity.Property(e => e.PlayerId).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<Points>(entity =>
+            {
+                entity.HasNoKey();
             });
 
             modelBuilder.Entity<SptTblPlayers>(entity =>
@@ -420,6 +439,64 @@ namespace MyDraftAPI.Data
                 entity.Property(e => e.FullName).IsUnicode(false);
 
                 entity.Property(e => e.MascotName).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.Property(e => e.UserId).ValueGeneratedNever();
+
+                entity.Property(e => e.Email).IsFixedLength();
+
+                entity.Property(e => e.Password).IsFixedLength();
+            });
+
+            modelBuilder.Entity<UserDraftSelections>(entity =>
+            {
+                entity.Property(e => e.UserDraftSelectionsId).ValueGeneratedNever();
+
+                entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
+
+                entity.HasOne(d => d.League)
+                    .WithMany(p => p.UserDraftSelections)
+                    .HasForeignKey(d => d.LeagueId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserDraftSelections_UserLeague");
+
+                entity.HasOne(d => d.Player)
+                    .WithMany(p => p.UserDraftSelections)
+                    .HasForeignKey(d => d.PlayerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserDraftSelections_Players");
+            });
+
+            modelBuilder.Entity<UserLeague>(entity =>
+            {
+                entity.Property(e => e.Abbr).IsFixedLength();
+
+                entity.Property(e => e.DraftOrder).IsFixedLength();
+
+                entity.Property(e => e.Name).IsFixedLength();
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserLeague)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserLeague_User");
+            });
+
+            modelBuilder.Entity<UserLeagueTeams>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.Property(e => e.Abbr).IsFixedLength();
+
+                entity.Property(e => e.Name).IsFixedLength();
+
+                entity.HasOne(d => d.League)
+                    .WithMany()
+                    .HasForeignKey(d => d.LeagueId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserLeagueTeams_UserLeague");
             });
 
             OnModelCreatingPartial(modelBuilder);

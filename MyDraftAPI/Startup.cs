@@ -18,6 +18,7 @@ using System.IO;
 using MyDraftAPI.Repository;
 using AutoMapper;
 using MyDraftAPI.MyDraftMapper;
+using MyDraftAPI.Repository.IRepository;
 
 namespace MyDraftAPI
 {
@@ -41,6 +42,7 @@ namespace MyDraftAPI
             // Configure Repository
             services.AddScoped<ApiPlayerRepository, ApiPlayerRepository>();
             services.AddScoped<ApiNewsRepository, ApiNewsRepository>();
+            services.AddScoped<IApiUserLeague, ApiUserLeagueRepository>();
             services.AddAutoMapper(typeof(MyDraftMappings));
             // Swashbuckle.AspNetCore
             services.AddMvc();

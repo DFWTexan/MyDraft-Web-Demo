@@ -15,15 +15,17 @@ export class LeagueListComponent implements OnInit, OnDestroy  {
 
   constructor(private leagueService: LeagueService) {
     // subscribe to home component messages
-    this.subscription = this.leagueService.getUserLeagues()
-      .subscribe(leagues => {
-        console.log(leagues);
-        this.userLeagues = leagues;
-    });
+    
   }
 
   ngOnInit() {
-    this.userLeagues = this.leagueService.fetchLeagues().filter(({ leagueActive }) => leagueActive !== true);
+    
+    //this.subscription = this.leagueService.getUserLeagues(1)
+    //  .subscribe(leagues => {
+    //    console.log(leagues);
+    //    this.userLeagues = leagues;
+    //    this.userLeagues = this.leagueService.fetchLeagues().filter(({ leagueActive }) => leagueActive !== true);
+    //  });
   }
 
   ngOnDestroy() {

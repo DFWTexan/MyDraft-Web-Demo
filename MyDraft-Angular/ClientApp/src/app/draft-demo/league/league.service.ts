@@ -1,5 +1,8 @@
-import { Injectable, Output } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Injectable, Output, Inject } from '@angular/core';
+import { Subject, Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
+
 
 import { League } from './league.model';
 import { MessageService } from '../shared/message.service';
@@ -17,44 +20,54 @@ import { ScoringIDP } from './league-edit/custom-scoring/edit-idp/scoringIDP.mod
   providedIn: 'root'
 })
 export class LeagueService {
-  private leagues: League[] = [
-    new League(
-      1,
-      'MyLeague_1',
-      'MFL_1',
-      1,
-      0,
-      'SNAKE',
-      12,
-      16,
-      1,
-      false,
-      false,
-      null,
-      10,
-      false,
-      0,
-      true
-    ),
-    new League(
-      2,
-      'My_League_2',
-      'MFL_2',
-      1,
-      0,
-      'SNAKE',
-      12,
-      16,
-      1,
-      false,
-      false,
-      null,
-      10,
-      false,
-      0,
-      false
-    ),
-  ];
+  // Observable string sources
+  private fetchedLeagues = new Subject<League[]>();
+  private leagueActive = new Subject<League>();
+  // Observable string streams
+  leaguesFetched$ = this.fetchedLeagues.asObservable();
+  activeLeague$ = this.leagueActive.asObservable();
+
+  private baseURL: string = '';
+  private leagueUrl = this.baseURL + 'api/MyDraftData/GetUserLeagues/';
+
+  //private leagues: League[] = [
+  //  new League(
+  //    1,
+  //    'MyLeague_1',
+  //    'MFL_1',
+  //    1,
+  //    0,
+  //    'SNAKE',
+  //    12,
+  //    16,
+  //    1,
+  //    false,
+  //    false,
+  //    null,
+  //    10,
+  //    false,
+  //    0,
+  //    true
+  //  ),
+  //  new League(
+  //    2,
+  //    'My_League_2',
+  //    'MFL_2',
+  //    1,
+  //    0,
+  //    'SNAKE',
+  //    12,
+  //    16,
+  //    1,
+  //    false,
+  //    false,
+  //    null,
+  //    10,
+  //    false,
+  //    0,
+  //    false
+  //  ),
+  //];
 
   // appData //
   private rosterStandard: IRoster[] = [
@@ -116,10 +129,13 @@ export class LeagueService {
   //------------------------------------------------------//
 
   activeLeague: League;
+  leagues: League[] = [];
 
   private leaguesChanged = new Subject<any>();
   
-  constructor(private messageService: MessageService) { }
+  constructor(private http: HttpClient,
+              private messageService: MessageService,
+              @Inject('BASE_URL') baseUrl: string) { }
 
   //get-ROSTER
   getRosterStandard() {
@@ -154,19 +170,30 @@ export class LeagueService {
     return this.idpcScoring;
   }
 
-  getUserLeagues(): Observable<any> {
-    return this.leaguesChanged.asObservable();
+  setLeague(leagues: League[]) {
+    this.leagues = leagues;
+    this.activeLeague = this.leagues.find(league => league.activeFlag === true);
+    this.fetchedLeagues.next(leagues);
+    this.leagueActive.next(this.activeLeague)
+  }
+
+  getUserLeagues(userID: number): Observable<any> {
+    return this.http.get<ILeague[]>(this.leagueUrl + userID)
+      .pipe(
+        tap(_ => this.log('fetched user leagues with user ID')),
+        catchError(this.handleError<ILeague[]>('getUserLeagues'))
+      );
   }
 
   fetchLeagues() {
-    this.log('Fetching Leagues');
-    this.activeLeague = this.leagues.find(league => league.leagueActive === true);
-    this.leaguesChanged.next();
+    //this.log('Fetching Leagues');
+    //this.activeLeague = this.leagues.find(league => league.leagueActive === true);
+    //this.leaguesChanged.next();
     return this.leagues.slice();
   }
 
   getLeagueByID(id: number) {
-    return this.leagues.find(x => x.id === id);
+    return this.leagues.find(x => x.leagueId === id);
   }
 
   updateLeague(id: number) {
@@ -177,6 +204,26 @@ export class LeagueService {
 
   }
 
+  /**
+ * Handle Http operation that failed.
+ * Let the app continue.
+ * @param operation - name of the operation that failed
+ * @param result - optional value to return as the observable result
+ */
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
   /** Log a LeagueService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`LeagueService: ${message}`);
@@ -184,22 +231,16 @@ export class LeagueService {
 }
 
 export interface ILeague {
-  id: number;
+  leagueId: number;
   name: string;
   abbr: string;
   mode: number;
   draftType: number;
   draftOrder: string;
-  numTeams: number;
-  numRounds: number;
-  userTeamID: number;
-  combineWRTE: boolean;
-  includeIDP: boolean;
-  scoringTypeID: number;
-  auctionBudget: number;
-  mockDraft: boolean;
-  positionLimitEnabled: number;
-  leagueActive: boolean;
+  numberTeams: number;
+  numberRounds: number;
+  myTeamId: number;
+  activeFlag: boolean;
 }
 
 export interface IRoster {

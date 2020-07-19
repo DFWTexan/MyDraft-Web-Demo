@@ -19,6 +19,7 @@ namespace MyDraft_Angular.Controllers
         public IEnumerable<PlayerItem> PullPlayerRequests { get; private set; }
         public IEnumerable<PlayerDepthChartItem> PullPlayerDepthChartRequests { get; private set; }
         public IEnumerable<NewsItem> PullNewsRequests { get; private set; }
+        public IEnumerable<UserLeague> PullLeaguesRequests { get; private set; }
         public bool GetPullRequestsError { get; private set; }
 
         public MyDraftDataController(IHttpClientFactory clientFactory)
@@ -168,6 +169,34 @@ namespace MyDraft_Angular.Controllers
 
             return PullNewsRequests;
         }
+
+        //----------------------- LEAGUE ----------------------------//
+        // GET: api/MyDraftData/GetUserLeagues/5
+        [HttpGet("[action]/{userID:int}", Name = "GetUserLeagues")]
+        public async Task<IEnumerable<UserLeague>> GetUserLeagues([FromRoute] int userID)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "api/League/" + userID);
+
+            var client = _clientFactory.CreateClient("myDraftData");
+
+            var response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                using var responseStream = await response.Content.ReadAsStreamAsync();
+                PullLeaguesRequests = await JsonSerializer.DeserializeAsync<IEnumerable<UserLeague>>(responseStream);
+            }
+            else
+            {
+                GetPullRequestsError = true;
+                PullLeaguesRequests = Array.Empty<UserLeague>();
+            }
+
+            return PullLeaguesRequests;
+        }
+
+
+
 
 
 

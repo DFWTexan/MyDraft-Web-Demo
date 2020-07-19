@@ -1,42 +1,29 @@
 import { ILeague } from "./league.service";
 
 export class League implements ILeague {
-  id: number;
+  leagueId: number;
   name: string;
   abbr: string;
   mode: number;
   draftType: number;
   draftOrder: string;
-  numTeams: number;
-  numRounds: number;
-  userTeamID: number;
-  combineWRTE: boolean;
-  includeIDP: boolean;
-  scoringTypeID: number;
-  auctionBudget: number;
-  mockDraft: boolean;
-  positionLimitEnabled: number;
-  leagueActive: boolean;
+  numberTeams: number;
+  numberRounds: number;
+  myTeamId: number;
+  activeFlag: boolean;
 
-  constructor(id: number, name: string, abbr: string, mode: number, draftType: number, draftOrder: string, numTeams: number, numRounds: number, userTeamID: number, combineWRTE: boolean,
-    includeIDP: boolean, scoringTypeID: number, auctionBudget: number, mockDraft: boolean, positionLimitEnabled: number, leagueActive: boolean) {
+  constructor(leagueId: number, name: string, abbr: string, mode: number, draftType: number, draftOrder: string, numberTeams: number, numberRounds: number, myTeamId: number, activeFlag: boolean) {
 
-    this.id = id;
+    this.leagueId = leagueId;
     this.name = name;
     this.abbr = abbr;
     this.mode = mode;
     this.draftType = draftType;
     this.draftOrder = draftOrder;
-    this.numTeams = numTeams;
-    this.numRounds = numRounds;
-    this.userTeamID = userTeamID;
-    this.combineWRTE = combineWRTE;
-    this.includeIDP = includeIDP;
-    this.scoringTypeID = scoringTypeID;
-    this.auctionBudget = auctionBudget;
-    this.mockDraft = mockDraft;
-    this.positionLimitEnabled = positionLimitEnabled;
-    this.leagueActive = leagueActive;
+    this.numberTeams = numberTeams;
+    this.numberRounds = numberRounds;
+    this.myTeamId = myTeamId;
+    this.activeFlag = activeFlag;
 
   }
 

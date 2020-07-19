@@ -8,7 +8,7 @@
         <br />
         
           <div class="col w-75" style="background: white">
-            <h4>{{activeLeague.name}}</h4>
+            <h4>{{activeLeague?.name}}</h4>
           </div>
         
       </div>
@@ -37,7 +37,7 @@
   <!-- League Information -->
   <div class="row rounded" style="background-color: aliceblue; border: solid 1px gainsboro">
     <div class="col w-100 p-3 rounded" style="width: 100%; min-height: 825px; max-height: 800px">
-      <app-my-league *ngIf="displayView === 'LEAGUE'"></app-my-league>
+      <!--<app-my-league *ngIf="displayView === 'LEAGUE'"></app-my-league>-->
       <!--<router-outlet name="myLeague" *ngIf="displayView === 'League'"></router-outlet>-->
       <app-roster-list *ngIf="displayView === 'ROSTER'"></app-roster-list>
       <app-league-edit *ngIf="displayView === 'EDIT'"></app-league-edit>

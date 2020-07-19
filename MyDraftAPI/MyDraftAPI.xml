@@ -4,6 +4,13 @@
         <name>MyDraftAPI</name>
     </assembly>
     <members>
+        <member name="M:MyDraftAPI.Controllers.LeagueController.GetUserLeagues(System.Int32)">
+            <summary>
+            Get Active User League and List of User Leagues.
+            </summary>
+            <param name="userId"> The User ID.</param>
+            <returns></returns>
+        </member>
         <member name="M:MyDraftAPI.Controllers.NewsController.GetApiNews">
             <summary>
             Get list of News (Items for News List).

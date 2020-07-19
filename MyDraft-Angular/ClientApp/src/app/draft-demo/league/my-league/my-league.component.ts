@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 import { League } from '../league.model';
 import { LeagueService } from '../league.service';
 import { MydraftService } from '../../shared/mydraft.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -11,9 +12,10 @@ import { MydraftService } from '../../shared/mydraft.service';
   templateUrl: './my-league.component.html',
   styleUrls: ['./my-league.component.css']
 })
-export class MyLeagueComponent implements OnInit {
+export class MyLeagueComponent implements OnInit, OnDestroy {
   editMode = true;
   leagueForm: FormGroup;
+  league: League;
   numTeamValues: any = [
     9, 10, 11, 12, 13, 14, 15, 16, 17
   ];
@@ -32,11 +34,19 @@ export class MyLeagueComponent implements OnInit {
   selectedDraftType = 'STANDARD';
   selectedDraftOrder = 'SNAKE';
 
+  subscription: Subscription;
+
   constructor(private leagueService: LeagueService,
               private myDraftService: MydraftService
   ) { }
 
   ngOnInit() {
+    this.subscription = this.leagueService.activeLeague$
+      .subscribe(data => {
+        console.log(data);
+        this.league = data;
+      });
+
     this.initForm();
     this.draftOrderValues = this.myDraftService.getDraftOrder();
     //console.log(this.draftOrderValues);
@@ -76,12 +86,11 @@ export class MyLeagueComponent implements OnInit {
     
 
     if (this.editMode) {
-      const league = this.leagueService.getLeagueByID(this.leagueService.activeLeague.id);
-      leagueName = league.name;
-      numTeams = league.numTeams;
-      draftType = league.draftType;
-      numRounds = league.numRounds;
-      draftOrder = league.draftOrder;
+      leagueName = this.league.name;
+      numTeams = this.league.numberTeams;
+      draftType = this.league.draftType;
+      numRounds = this.league.numberRounds;
+      draftOrder = this.league.draftOrder;
     }
     this.leagueForm = new FormGroup({
       leagueName: new FormControl(leagueName, Validators.required),
@@ -92,4 +101,8 @@ export class MyLeagueComponent implements OnInit {
     });    
   }
 
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
+  }
 }

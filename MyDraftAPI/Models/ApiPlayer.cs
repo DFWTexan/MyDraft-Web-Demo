@@ -26,10 +26,18 @@ namespace MyDraftAPI.Models
         public string Height { get; set; }
         [StringLength(50)]
         public string College { get; set; }
+        [Column("isRookie")]
+        public bool? IsRookie { get; set; }
         [Column("PhotoURL")]
         [StringLength(250)]
         public string PhotoUrl { get; set; }
         [StringLength(30)]
         public string Status { get; set; }
+        [StringLength(5)]
+        public string PositionCategory { get; set; }
+        [Column("UID")]
+        public int? Uid { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime CreateDate { get; set; }
     }
 }
