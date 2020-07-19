@@ -38,17 +38,20 @@ export class MyLeagueComponent implements OnInit, OnDestroy {
 
   constructor(private leagueService: LeagueService,
               private myDraftService: MydraftService
-  ) { }
-
-  ngOnInit() {
-    this.subscription = this.leagueService.activeLeague$
+  ) {
+     this.subscription = this.leagueService.activeLeague$
       .subscribe(data => {
         console.log(data);
         this.league = data;
+        this.initForm();
       });
-
-    this.initForm();
     this.draftOrderValues = this.myDraftService.getDraftOrder();
+  }
+
+  ngOnInit() {
+   
+
+   
     //console.log(this.draftOrderValues);
    }
 
