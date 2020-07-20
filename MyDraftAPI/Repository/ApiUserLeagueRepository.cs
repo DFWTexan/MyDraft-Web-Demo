@@ -15,6 +15,12 @@ namespace MyDraftAPI.Repository
         {
             _db = db;
         }
+
+        public UserLeague GetActiveLeague(int userID)
+        {
+            return _db.UserLeague.Where(item => item.UserId == userID &&  item.ActiveFlag).FirstOrDefault();
+        }
+
         public ICollection<UserLeague> GetApiUserLeagues(int userID)
         {
             return _db.UserLeague.Where(item => item.UserId == userID).ToList();

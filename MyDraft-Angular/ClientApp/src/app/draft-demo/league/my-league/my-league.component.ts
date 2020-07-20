@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 })
 export class MyLeagueComponent implements OnInit, OnDestroy {
   editMode = true;
+  @Input() activeLeagueObj: League;
   leagueForm: FormGroup;
   league: League;
   numTeamValues: any = [
@@ -39,19 +40,17 @@ export class MyLeagueComponent implements OnInit, OnDestroy {
   constructor(private leagueService: LeagueService,
               private myDraftService: MydraftService
   ) {
-     this.subscription = this.leagueService.activeLeague$
-      .subscribe(data => {
-        console.log(data);
-        this.league = data;
-        this.initForm();
-      });
+     //this.subscription = this.leagueService.activeLeague$
+     // .subscribe(data => {
+     //   console.log(data);
+     //   this.league = data;
+     //   this.initForm();
+     // });
+    this.initForm();
     this.draftOrderValues = this.myDraftService.getDraftOrder();
   }
 
   ngOnInit() {
-   
-
-   
     //console.log(this.draftOrderValues);
    }
 
@@ -89,11 +88,17 @@ export class MyLeagueComponent implements OnInit, OnDestroy {
     
 
     if (this.editMode) {
-      leagueName = this.league.name;
-      numTeams = this.league.numberTeams;
-      draftType = this.league.draftType;
-      numRounds = this.league.numberRounds;
-      draftOrder = this.league.draftOrder;
+      //leagueName = this.league.name;
+      //numTeams = this.league.numberTeams;
+      //draftType = this.league.draftType;
+      //numRounds = this.league.numberRounds;
+      //draftOrder = this.league.draftOrder;
+
+      leagueName = this.activeLeagueObj.name;
+      numTeams = this.activeLeagueObj.numberTeams;
+      draftType = this.activeLeagueObj.draftType;
+      numRounds = this.activeLeagueObj.numberRounds;
+      draftOrder = this.activeLeagueObj.draftOrder;
     }
     this.leagueForm = new FormGroup({
       leagueName: new FormControl(leagueName, Validators.required),

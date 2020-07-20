@@ -185,12 +185,14 @@ export class LeagueService {
       );
   }
 
-  fetchLeagues() {
+  getLeagues() {
     //this.log('Fetching Leagues');
     //this.activeLeague = this.leagues.find(league => league.leagueActive === true);
     //this.leaguesChanged.next();
     return this.leagues.slice();
   }
+
+
 
   getLeagueByID(id: number) {
     return this.leagues.find(x => x.leagueId === id);

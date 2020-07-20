@@ -31,12 +31,12 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
   }
 
   getPlayer(id: number): void {
-    //this.subscription = this.playerService.getPlayerByID(id)
-    //  .subscribe(player => {
-    //    this.player = player;
-    //    this.playerService.setPlayerObj(player);
-    //  }
-    //);
+    this.subscription = this.playerService.getPlayerByID(id)
+      .subscribe(player => {
+        this.player = player;
+        this.playerService.setPlayerObj(player);
+      }
+    );
   }
   
   onDisplaySelect(display: string) {

@@ -20,7 +20,9 @@ export class LeagueComponent implements OnInit, OnDestroy   {
   constructor(private leagueService: LeagueService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    this.activeLeague = this.leagueService.activeLeague;
+  }
 
   ngOnInit() {
     this.subscription = this.leagueService.getUserLeagues(1)
