@@ -46,6 +46,7 @@ export class MyLeagueComponent implements OnInit, OnDestroy {
      //   this.league = data;
      //   this.initForm();
      // });
+    this.league = this.leagueService.activeLeague;
     this.initForm();
     this.draftOrderValues = this.myDraftService.getDraftOrder();
   }
@@ -94,11 +95,11 @@ export class MyLeagueComponent implements OnInit, OnDestroy {
       //numRounds = this.league.numberRounds;
       //draftOrder = this.league.draftOrder;
 
-      leagueName = this.activeLeagueObj.name;
-      numTeams = this.activeLeagueObj.numberTeams;
-      draftType = this.activeLeagueObj.draftType;
-      numRounds = this.activeLeagueObj.numberRounds;
-      draftOrder = this.activeLeagueObj.draftOrder;
+      leagueName = this.league.name;
+      numTeams = this.league.numberTeams;
+      draftType = this.league.draftType;
+      numRounds = this.league.numberRounds;
+      draftOrder = this.league.draftOrder;
     }
     this.leagueForm = new FormGroup({
       leagueName: new FormControl(leagueName, Validators.required),

@@ -128,6 +128,7 @@ export class LeagueService {
   private idpcScoring: IScoringIDP = new ScoringIDP(0, 0, 2, 2, 0, 1, 2);
   //------------------------------------------------------//
 
+  userID: number = 1;
   activeLeague: League;
   leagues: League[] = [];
 
