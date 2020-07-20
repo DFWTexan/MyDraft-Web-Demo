@@ -16,7 +16,7 @@ export class PlayerService {
   // Observable string streams
   playersFetched$ = this.fetchedPlayers
   playerObjRoute$ = this.routedPlayer.asObservable();
-  private player: Player;
+  player: Player;
   private baseURL: string = '';
   private playerUrl = this.baseURL + 'api/MyDraftData';
   private playerDepthChartUrl = this.baseURL + 'api/MyDraftData/GetPlayerDepthChart/';
@@ -36,9 +36,7 @@ export class PlayerService {
   };
 
   setPlayers(players: any): void {
-    //console.log(players);
     this.players = players;
-    //console.log(this.players);
     this.fetchedPlayers.next(players);
   }
 
@@ -53,17 +51,8 @@ export class PlayerService {
         tap(_ => this.log('fetched players')),
         catchError(this.handleError<IPlayerItem[]>('getPlayers', []))
       );
-    //return this.players.slice();
   }
-  //getPlayers(): Observable<any> {
-  //  //return this.http.get<IPlayerItem[]>(this.playerUrl)
-  //  //  .pipe(
-  //  //    tap(_ => this.log('fetched players')),
-  //  //    catchError(this.handleError<IPlayerItem[]>('getPlayers', []))
-  //  //  );
-  //  return this.fetchedPlayers.asObservable();
-  //}
-
+  
   getPlayerByID(id: number) {
     return this.http.get<IPlayer>(this.playerUrl + '/' + id)
       .pipe(
@@ -72,8 +61,8 @@ export class PlayerService {
       );
   }
 
-  getPlayerDepthChart() {
-    return this.http.get<IPlayerDepthChartItem[]>(this.playerDepthChartUrl + this.player.position +'/'+ this.player.teamAbbr)
+  getPlayerDepthChart(position: string, teamAbbr: string) {
+    return this.http.get<IPlayerDepthChartItem[]>(this.playerDepthChartUrl + position +'/'+ teamAbbr)
       .pipe(
         tap(_ => this.log('fetched player depthchart')),
         catchError(this.handleError<IPlayerDepthChartItem[]>('getPlayerDepthChart', []))

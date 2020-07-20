@@ -20,12 +20,13 @@ export class PlayerDepthItemComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private playerService: PlayerService) {
-    this.subscription = this.playerService.playerObjRoute$.subscribe(
-      objData => {
-        this.playerObj = objData;
-        this.setHeader();
-      });
-    
+    //this.subscription = this.playerService.playerObjRoute$.subscribe(
+    //  objData => {
+    //    this.playerObj = objData;
+    //    this.setHeader();
+    //  });
+    this.playerObj = this.playerService.player;
+    this.setHeader();
   }
     
   ngOnInit() {}

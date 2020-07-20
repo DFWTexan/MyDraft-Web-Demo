@@ -40,20 +40,12 @@ export class MyLeagueComponent implements OnInit, OnDestroy {
   constructor(private leagueService: LeagueService,
               private myDraftService: MydraftService
   ) {
-     //this.subscription = this.leagueService.activeLeague$
-     // .subscribe(data => {
-     //   console.log(data);
-     //   this.league = data;
-     //   this.initForm();
-     // });
     this.league = this.leagueService.activeLeague;
     this.initForm();
     this.draftOrderValues = this.myDraftService.getDraftOrder();
   }
 
-  ngOnInit() {
-    //console.log(this.draftOrderValues);
-   }
+  ngOnInit() {}
 
   onSubmit() {
     if (this.editMode) {
@@ -89,12 +81,6 @@ export class MyLeagueComponent implements OnInit, OnDestroy {
     
 
     if (this.editMode) {
-      //leagueName = this.league.name;
-      //numTeams = this.league.numberTeams;
-      //draftType = this.league.draftType;
-      //numRounds = this.league.numberRounds;
-      //draftOrder = this.league.draftOrder;
-
       leagueName = this.league.name;
       numTeams = this.league.numberTeams;
       draftType = this.league.draftType;
