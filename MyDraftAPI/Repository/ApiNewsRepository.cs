@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MyDraftAPI.Repository
 {
-    public class ApiNewsRepository : IApiNews
+    public class ApiNewsRepository : IApiNewsRepository
     {
         private readonly Num5dataContext _db;
         public ApiNewsRepository(Num5dataContext db)

@@ -16,10 +16,10 @@ namespace MyDraftAPI.Controllers
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class LeagueController : ControllerBase
     {
-        private readonly IApiUserLeague  _userRepo;
+        private readonly IApiUserLeagueRepository  _userRepo;
         private readonly IMapper _mapper;
 
-        public LeagueController(IApiUserLeague userRepo, IMapper mapper)
+        public LeagueController(IApiUserLeagueRepository userRepo, IMapper mapper)
         {
             _userRepo = userRepo;
             _mapper = mapper;

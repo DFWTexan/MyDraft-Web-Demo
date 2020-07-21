@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyDraftAPI.Models.Dtos;
 using MyDraftAPI.Repository;
+using MyDraftAPI.Repository.IRepository;
 
 namespace MyDraftAPI.Controllers
 {
@@ -15,10 +16,10 @@ namespace MyDraftAPI.Controllers
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class PlayersController : ControllerBase
     {
-        private readonly ApiPlayerRepository _playerRepo;
+        private readonly IApiPlayerRepository _playerRepo;
         private readonly IMapper _mapper;
 
-        public PlayersController(ApiPlayerRepository playerRepo, IMapper mapper)
+        public PlayersController(IApiPlayerRepository playerRepo, IMapper mapper)
         {
             _playerRepo = playerRepo;
             _mapper = mapper;

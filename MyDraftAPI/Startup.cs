@@ -40,9 +40,9 @@ namespace MyDraftAPI
             services.AddDbContext<Num5dataContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("Num5dataENTITIES")));
             // Configure Repository
-            services.AddScoped<ApiPlayerRepository, ApiPlayerRepository>();
-            services.AddScoped<ApiNewsRepository, ApiNewsRepository>();
-            services.AddScoped<IApiUserLeague, ApiUserLeagueRepository>();
+            services.AddScoped<IApiPlayerRepository, ApiPlayerRepository>();
+            services.AddScoped<IApiNewsRepository, ApiNewsRepository>();
+            services.AddScoped<IApiUserLeagueRepository, ApiUserLeagueRepository>();
             services.AddAutoMapper(typeof(MyDraftMappings));
             // Swashbuckle.AspNetCore
             services.AddMvc();

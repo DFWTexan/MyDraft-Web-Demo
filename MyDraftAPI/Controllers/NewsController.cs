@@ -7,18 +7,19 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyDraftAPI.Models.Dtos;
 using MyDraftAPI.Repository;
+using MyDraftAPI.Repository.IRepository;
 
 namespace MyDraftAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public class NewsController : Controller
+    public class NewsController : ControllerBase
     {
-        private readonly ApiNewsRepository _newsrRepo;
+        private readonly IApiNewsRepository _newsrRepo;
         private readonly IMapper _mapper;
 
-        public NewsController(ApiNewsRepository newsRepo, IMapper mapper)
+        public NewsController(IApiNewsRepository newsRepo, IMapper mapper)
         {
             _newsrRepo = newsRepo;
             _mapper = mapper;

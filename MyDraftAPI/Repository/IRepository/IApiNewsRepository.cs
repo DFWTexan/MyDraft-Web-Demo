@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyDraftAPI.Repository.IRepository
 {
-    interface IApiNews
+    public interface IApiNewsRepository
     {
         ICollection<GetNewsItem> GetAllNews();
     }

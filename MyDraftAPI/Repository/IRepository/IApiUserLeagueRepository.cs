@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyDraftAPI.Repository.IRepository
 {
-    public interface IApiUserLeague
+    public interface IApiUserLeagueRepository
     {
         ICollection<UserLeague> GetApiUserLeagues(int userID);
         UserLeague GetActiveLeague(int userID);

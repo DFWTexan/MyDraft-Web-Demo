@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyDraftAPI.Repository
 {
-    public class ApiUserLeagueRepository : IApiUserLeague
+    public class ApiUserLeagueRepository : IApiUserLeagueRepository
     {
         private readonly Num5dataContext _db;
         public ApiUserLeagueRepository(Num5dataContext db)

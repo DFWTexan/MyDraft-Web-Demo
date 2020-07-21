@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MyDraftAPI.Repository
 {
-    public class ApiPlayerRepository : IApiPlayer
+    public class ApiPlayerRepository : IApiPlayerRepository
     {
         private readonly Num5dataContext _db;
         public ApiPlayerRepository(Num5dataContext db)

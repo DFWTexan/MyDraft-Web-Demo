@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyDraftAPI.Repository.IRepository
 {
-    interface IApiPlayer
+    public interface IApiPlayerRepository
     {
         ICollection<GetPlayerItem> GetApiPlayers();
         ICollection<GetPlayerDepthChartItem> GetApiPlayersDepthChart(string position, string teamAbbr);
