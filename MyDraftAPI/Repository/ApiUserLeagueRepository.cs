@@ -25,5 +25,22 @@ namespace MyDraftAPI.Repository
         {
             return _db.UserLeague.Where(item => item.UserId == userID).ToList();
         }
+
+        public bool UpdateActiveLeague(UserLeague league)
+        {
+            var inactiveLeagues = _db.UserLeague.Where(x => x.UserId == league.UserId && x.LeagueId != league.LeagueId).ToList();
+            inactiveLeagues.ForEach(a => a.ActiveFlag = false);
+            _db.SaveChanges();
+
+            league.ActiveFlag = true;
+            _db.UserLeague.Update(league);
+
+            return Save();
+        }
+
+        public bool Save()
+        {
+            return _db.SaveChanges() >= 0 ? true : false;
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace MyDraftAPI.Repository.IRepository
     {
         ICollection<UserLeague> GetApiUserLeagues(int userID);
         UserLeague GetActiveLeague(int userID);
+        bool UpdateActiveLeague(UserLeague league);
     }
 }

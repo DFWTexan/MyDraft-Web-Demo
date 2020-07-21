@@ -8,6 +8,7 @@ namespace MyDraftAPI.Models.Dtos
     public class ApiUserLeaguesDTO
     {
         public int LeagueId { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string Abbr { get; set; }
         public int Mode { get; set; }

@@ -65,5 +65,26 @@ namespace MyDraftAPI.Controllers
 
             return Ok(objDto);
         }
+
+        [HttpPatch("{leagueId:int}", Name = "UpdateActiveLeague")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult UpdateActiveLeague(int leagueId, [FromBody] ApiUserLeaguesDTO apiUserLeaguesDTO)
+        {
+            if (apiUserLeaguesDTO == null || leagueId != apiUserLeaguesDTO.LeagueId)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var leaguekObj = _mapper.Map<UserLeague>(apiUserLeaguesDTO);
+            if (!_userRepo.UpdateActiveLeague(leaguekObj))
+            {
+                ModelState.AddModelError("", $"Something went wrong when updating the record {leaguekObj.Name}");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
     }
 }
