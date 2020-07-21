@@ -187,13 +187,8 @@ export class LeagueService {
   }
 
   getLeagues() {
-    //this.log('Fetching Leagues');
-    //this.activeLeague = this.leagues.find(league => league.leagueActive === true);
-    //this.leaguesChanged.next();
-    return this.leagues.slice();
+    return this.leagues.filter(itm => itm.activeFlag === false);
   }
-
-
 
   getLeagueByID(id: number) {
     return this.leagues.find(x => x.leagueId === id);
