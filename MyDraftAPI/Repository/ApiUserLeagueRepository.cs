@@ -26,7 +26,7 @@ namespace MyDraftAPI.Repository
             return _db.UserLeague.Where(item => item.UserId == userID).ToList();
         }
 
-        public bool UpdateActiveLeague(UserLeague league)
+        public bool SetActiveLeague(UserLeague league)
         {
             var inactiveLeagues = _db.UserLeague.Where(x => x.UserId == league.UserId && x.LeagueId != league.LeagueId).ToList();
             inactiveLeagues.ForEach(a => a.ActiveFlag = false);

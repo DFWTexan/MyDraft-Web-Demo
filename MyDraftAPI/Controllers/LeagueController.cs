@@ -16,12 +16,12 @@ namespace MyDraftAPI.Controllers
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class LeagueController : ControllerBase
     {
-        private readonly IApiUserLeagueRepository  _userRepo;
+        private readonly IApiUserLeagueRepository  _userLeagueRepo;
         private readonly IMapper _mapper;
 
-        public LeagueController(IApiUserLeagueRepository userRepo, IMapper mapper)
+        public LeagueController(IApiUserLeagueRepository userLeagueRepo, IMapper mapper)
         {
-            _userRepo = userRepo;
+            _userLeagueRepo = userLeagueRepo;
             _mapper = mapper;
         }
 
@@ -36,7 +36,7 @@ namespace MyDraftAPI.Controllers
         [ProducesDefaultResponseType]
         public IActionResult GetActiveLeague(int userID)
         {
-            var obj = _userRepo.GetActiveLeague(userID);
+            var obj = _userLeagueRepo.GetActiveLeague(userID);
             if (obj == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace MyDraftAPI.Controllers
         [ProducesResponseType(200, Type = typeof(List<UserLeague>))]
         public IActionResult GetUserLeagues(int userID)
         {
-            var objList = _userRepo.GetApiUserLeagues(userID);
+            var objList = _userLeagueRepo.GetApiUserLeagues(userID);
 
             var objDto = new List<ApiUserLeaguesDTO>();
             foreach (var obj in objList)
@@ -66,19 +66,24 @@ namespace MyDraftAPI.Controllers
             return Ok(objDto);
         }
 
-        [HttpPatch("{leagueId:int}", Name = "UpdateActiveLeague")]
+        /// <summary>
+        /// Set Users active League.
+        /// </summary>
+        /// <param name="apiUserLeaguesDTO"></param>
+        /// <returns></returns>
+        [HttpPatch("[action]", Name = "SetActive")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult UpdateActiveLeague(int leagueId, [FromBody] ApiUserLeaguesDTO apiUserLeaguesDTO)
+        public IActionResult SetActive([FromBody] ApiUserLeaguesDTO apiUserLeaguesDTO)
         {
-            if (apiUserLeaguesDTO == null || leagueId != apiUserLeaguesDTO.LeagueId)
+            if (apiUserLeaguesDTO == null)
             {
                 return BadRequest(ModelState);
             }
 
             var leaguekObj = _mapper.Map<UserLeague>(apiUserLeaguesDTO);
-            if (!_userRepo.UpdateActiveLeague(leaguekObj))
+            if (!_userLeagueRepo.SetActiveLeague(leaguekObj))
             {
                 ModelState.AddModelError("", $"Something went wrong when updating the record {leaguekObj.Name}");
                 return StatusCode(500, ModelState);

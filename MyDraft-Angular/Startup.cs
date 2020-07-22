@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MyDraft_Angular.Repository.IRepository;
+using MyDraft_Angular.Repository;
 using System;
 
 namespace MyDraft_Angular
@@ -34,6 +36,18 @@ namespace MyDraft_Angular
                 c.DefaultRequestHeaders.Add("Accept", "*/*");
                 // Github requires a user-agent
                 //c.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactory-Sample");
+            });
+
+            // Repository
+            services.AddHttpContextAccessor();
+            services.AddScoped<ILeagueRepository, LeagueRepository>();
+            services.AddHttpClient();
+            services.AddSession(options => {
+                //Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+                // Make the session cookie essential
+                options.Cookie.IsEssential = true;
             });
 
             // Enable CORS

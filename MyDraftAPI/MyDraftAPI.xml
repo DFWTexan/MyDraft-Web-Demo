@@ -18,6 +18,13 @@
             <param name="userID"> The User ID.</param>
             <returns></returns>
         </member>
+        <member name="M:MyDraftAPI.Controllers.LeagueController.SetActive(MyDraftAPI.Models.Dtos.ApiUserLeaguesDTO)">
+            <summary>
+            Set Users active League.
+            </summary>
+            <param name="apiUserLeaguesDTO"></param>
+            <returns></returns>
+        </member>
         <member name="M:MyDraftAPI.Controllers.NewsController.GetApiNews">
             <summary>
             Get list of News (Items for News List).

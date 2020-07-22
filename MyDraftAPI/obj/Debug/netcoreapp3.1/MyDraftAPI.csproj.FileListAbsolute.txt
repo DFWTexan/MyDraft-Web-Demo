@@ -129,7 +129,6 @@ C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\bin\Debug\netcor
 C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\obj\Debug\netcoreapp3.1\MyDraftAPI.csprojAssemblyReference.cache
 C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\obj\Debug\netcoreapp3.1\MyDraftAPI.AssemblyInfoInputs.cache
 C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\obj\Debug\netcoreapp3.1\MyDraftAPI.AssemblyInfo.cs
 C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\obj\Debug\netcoreapp3.1\MyDraftAPI.csproj.CoreCompileInputs.cache
@@ -142,3 +141,4 @@ C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\obj\Debug\netcor
 C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\obj\Debug\netcoreapp3.1\MyDraftAPI.dll
 C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\obj\Debug\netcoreapp3.1\MyDraftAPI.pdb
 C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\obj\Debug\netcoreapp3.1\MyDraftAPI.genruntimeconfig.cache
+C:\Users\erish\DFWTexan\Development\MyDraft-Web-Demo\MyDraftAPI\obj\Debug\netcoreapp3.1\MyDraftAPI.csprojAssemblyReference.cache

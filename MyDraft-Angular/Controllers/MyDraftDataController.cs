@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyDraft_Angular.Models;
+using MyDraft_Angular.Repository.IRepository;
 
 namespace MyDraft_Angular.Controllers
 {
@@ -16,15 +17,18 @@ namespace MyDraft_Angular.Controllers
     public class MyDraftDataController : Controller
     {
         private readonly IHttpClientFactory _clientFactory;
+        private readonly ILeagueRepository _lrepo;
+
         public IEnumerable<PlayerItem> PullPlayerRequests { get; private set; }
         public IEnumerable<PlayerDepthChartItem> PullPlayerDepthChartRequests { get; private set; }
         public IEnumerable<NewsItem> PullNewsRequests { get; private set; }
         public IEnumerable<UserLeague> PullLeaguesRequests { get; private set; }
         public bool GetPullRequestsError { get; private set; }
 
-        public MyDraftDataController(IHttpClientFactory clientFactory)
+        public MyDraftDataController(IHttpClientFactory clientFactory, ILeagueRepository lrepo)
         {
             _clientFactory = clientFactory;
+            _lrepo = lrepo;
         }
 
         // GET: api/MyDraftData
@@ -195,7 +199,17 @@ namespace MyDraft_Angular.Controllers
             return PullLeaguesRequests;
         }
 
-
+        //PUT: api/MyDraftData/SetActiveLeague/
+        [HttpPatch("[action]")]
+        public async Task<bool> SetActiveLeague([FromBody] UserLeague league)
+        {
+            var status = await _lrepo.UpdateAsync(ApiHelper.LeagueApiSetActivePath, league);
+            if (status)
+            {
+                return true;
+            }
+            return false;
+        }
 
 
 
@@ -210,11 +224,7 @@ namespace MyDraft_Angular.Controllers
         {
         }
 
-        // PUT: api/MyDraftData/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
