@@ -29,6 +29,7 @@ export class LeagueService {
 
   private baseURL: string = '';
   private leagueUrl = this.baseURL + 'api/MyDraftData/GetUserLeagues/';
+  private leagueSetActiviceURL = this.baseURL + 'api/MyDraftData/SetActiveLeague';
 
   //private leagues: League[] = [
   //  new League(
@@ -194,8 +195,17 @@ export class LeagueService {
     return this.leagues.find(x => x.leagueId === id);
   }
 
-  updateLeague(id: number) {
+  setActiveLeague(league: League) {
+    const headers = { 'content-type': 'application/json' }
+    const body = JSON.stringify(league);
 
+    this.http
+      .patch(
+        this.leagueSetActiviceURL, body, { 'headers': headers }
+      )
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 
   addLeague() {

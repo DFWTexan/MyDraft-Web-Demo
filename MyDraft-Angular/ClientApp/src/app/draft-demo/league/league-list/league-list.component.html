@@ -2,7 +2,8 @@
   <div class="col-lg-12" style="max-height: 200px; overflow: auto" >
     <app-league-item *ngFor="let leagueItem of userLeagues" 
                      [league]="leagueItem"
-                     [index]="leagueItem.id">
+                     [index]="leagueItem.id"
+                     (leagueSelected)="onLeagueSelected(leagueItem)">
     </app-league-item>
   </div>
 </div>

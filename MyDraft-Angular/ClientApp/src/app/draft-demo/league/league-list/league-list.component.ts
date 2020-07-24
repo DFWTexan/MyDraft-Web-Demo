@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { League } from '../league.model';
@@ -17,7 +17,11 @@ export class LeagueListComponent implements OnInit, OnDestroy  {
     this.userLeagues = leagueService.getLeagues();
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  onLeagueSelected(league: League) {
+    this.leagueService.setActiveLeague(league);
+  }
 
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 import { League } from '../../league.model';
 
@@ -10,10 +10,15 @@ import { League } from '../../league.model';
 export class LeagueItemComponent implements OnInit {
   @Input() league: League;
   @Input() index: number;
+  @Output() leagueSelected = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+
+  onSelected() {
+    this.leagueSelected.emit();
+  }
 }
