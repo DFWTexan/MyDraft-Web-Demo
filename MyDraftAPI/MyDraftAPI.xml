@@ -4,6 +4,20 @@
         <name>MyDraftAPI</name>
     </assembly>
     <members>
+        <member name="M:MyDraftAPI.Controllers.DraftController.DraftPlayer(MyDraftAPI.Repository.IRepository.IApiDraftRepository)">
+            <summary>
+            Create drafted player.
+            </summary>
+            <param name="apiUserDraftSelectionsDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyDraftAPI.Controllers.DraftController.DeleteDraftedPlayer(MyDraftAPI.Repository.IRepository.IApiDraftRepository)">
+            <summary>
+            Delete drafted Player
+            </summary>
+            <param name="apiUserDraftSelectionsDTO"></param>
+            <returns></returns>
+        </member>
         <member name="M:MyDraftAPI.Controllers.LeagueController.GetActiveLeague(System.Int32)">
             <summary>
             Get the user active league.

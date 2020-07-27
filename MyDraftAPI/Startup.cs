@@ -43,6 +43,7 @@ namespace MyDraftAPI
             services.AddScoped<IApiPlayerRepository, ApiPlayerRepository>();
             services.AddScoped<IApiNewsRepository, ApiNewsRepository>();
             services.AddScoped<IApiUserLeagueRepository, ApiUserLeagueRepository>();
+            services.AddScoped<IApiDraftRepository, ApiDraftRepository>();
             services.AddAutoMapper(typeof(MyDraftMappings));
             // Swashbuckle.AspNetCore
             services.AddMvc();

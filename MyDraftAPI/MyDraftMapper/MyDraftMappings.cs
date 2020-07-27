@@ -23,6 +23,8 @@ namespace MyDraftAPI.MyDraftMapper
             CreateMap<GetNewsItem, ApiNewsItemDTO>().ReverseMap();
             // League
             CreateMap<UserLeague, ApiUserLeaguesDTO>().ReverseMap();
+            // Draft
+            CreateMap<UserDraftSelections, ApiUserDraftSelectionsDTO>().ReverseMap();
         }
     }
 }
